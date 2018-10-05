@@ -133,19 +133,19 @@ class RNN():
 
     return loss, grads
   
-  def sample(self, N, start=None, max_length=30):
+  def sample(self, N, starts=None, max_length=30):
     """
     Run a test-time forward pass for the model, outputing a result text given the start word.
     At each timestep, we embed the current word, pass it and the previous hidden
     state to the RNN to get the next hidden state, use the hidden state to get
     scores for all vocab words, and choose the word with the highest score as
-    the next word. The initial hidden state is randomized and the initial word is the <START>
-    token. The initial word is <START> and the next onwards are chosen randomly according to the probability.
+    the next word. The initial hidden state is randomized and the initial words are to be prepended
+    by a <START> token. The actual RNN calculation will start from each last input word of the augmented batch.
     For LSTMs you will also have to keep track of the cell state; in that case
     the initial cell state should be zero.
     Inputs:
     - N: Batch size.
-    - start: A start token.
+    - starts: A batch of start words of outer size N.
     - max_length: Maximum length T of generated texts.
     Returns:
     - texts: Array of shape (N, max_length) giving sampled texts,
@@ -153,13 +153,20 @@ class RNN():
       of texts should be the first sampled word, not the <START> token.
     """
 
-    texts = self._null * np.ones((N, max_length), dtype=np.int32)
+    # texts = self._null * np.ones((N, max_length), dtype=np.int32)
+
+    # augment start word
+    if starts is None:
+      starts = [[self._start]] * N
+    if len(starts) != N:
+      raise ValueError("Invalid size of starts, should be %d" % N)
 
     # Unpack parameters
     W_embed = self.params['W_embed']
     Wx, Wh, b = self.params['Wx'], self.params['Wh'], self.params['b']
     W_vocab, b_vocab = self.params['W_vocab'], self.params['b_vocab']
     H = Wh.shape[0]
+    V = W_vocab.shape[1]
 
     ###########################################################################
     # TODO: Implement test-time sampling for the model. You will need to      #
@@ -186,7 +193,7 @@ class RNN():
     # you are using an LSTM, initialize the first cell state to zeros.        #
     ###########################################################################
     prev_h = np.random.randn(N, H)
-    texts_in = (np.ones(N) * self._start).astype(np.int64)
+    texts_in = (starts[:][-1]).astype(np.int64)
     texts = np.zeros((N, max_length))
     texts[:, 0] = texts_in
     prev_c = np.zeros_like(prev_h)
@@ -194,14 +201,19 @@ class RNN():
         embed, _ = word_embedding_forward(texts_in, W_embed)
         next_h, next_c, _ = lstm_step_forward(embed, prev_h, prev_c, Wx, Wh, b)
         vocab, _ = affine_forward(next_h, W_vocab, b_vocab)
-        # TODO: replace this with probability selection
-        texts_in = np.argmax(vocab, axis=1)
+        # texts_in = np.argmax(vocab, axis=1)
+        for j in range(N):
+          texts_in[j] = np.random.choice(V, 1, vocab)
         texts[:, i] = texts_in
         prev_h = next_h
         prev_c = next_c
-    texts[:, max_length - 1] += self._end
-    texts = texts.astype(np.int64)
+    texts[:, max_length-1] = self._end
+    # output
+    outputs = starts.copy()
+    for i in range(N):
+      outputs.extend(texts[i])
+    outputs = np.array(outputs).astype(np.int64)
     ############################################################################
     #                             END OF YOUR CODE                             #
     ############################################################################
-    return texts
+    return outputs
