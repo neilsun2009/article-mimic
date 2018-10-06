@@ -1,5 +1,7 @@
+# Mainly from Stanford CS231n
+
 import numpy as np
-import optim
+from src import optim
 
 class RNNSolver(object):
   """
@@ -51,7 +53,7 @@ class RNNSolver(object):
     Construct a new RNNSolver instance.
     Required arguments:
     - model: A model object conforming to the API described above
-    - data: A dictionary of training and validation data
+    - data: A numpy array of data
     Optional arguments:
     - update_rule: A string giving the name of an update rule in optim.py.
       Default is 'adam'.
@@ -115,10 +117,12 @@ class RNNSolver(object):
         d = {k: v for k, v in self.optim_config.items()}
         self.optim_configs[p] = d
 
-  def _sample_minibatch(self, data, batch_size=100, split='train'):
-    split_size = data['%s_texts' % split].shape[0]
+  def _sample_minibatch(self, data, batch_size=100):
+    # split_size = data['%s_texts' % split].shape[0]
+    split_size = data.shape[0]
     mask = np.random.choice(split_size, batch_size)
-    texts = data['%s_texts' % split][mask]
+    # texts = data['%s_texts' % split][mask]
+    texts = data[mask]
     return texts
 
   def _step(self):
@@ -128,8 +132,7 @@ class RNNSolver(object):
     """
     # Make a minibatch of training data
     texts = self._sample_minibatch(self.data,
-                  batch_size=self.batch_size,
-                  split='train')
+                  batch_size=self.batch_size)
 
     # Compute loss and gradient
     loss, grads = self.model.loss(texts)
@@ -189,7 +192,7 @@ class RNNSolver(object):
     """
     Run optimization to train the model.
     """
-    num_train = self.data['train_texts'].shape[0]
+    num_train = self.data.shape[0]
     iterations_per_epoch = max(num_train // self.batch_size, 1)
     num_iterations = self.num_epochs * iterations_per_epoch
 

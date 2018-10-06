@@ -1,3 +1,5 @@
+# From Stanford CS231n
+
 # from __future__ import print_function
 # from builtins import range
 # from past.builtins import xrange

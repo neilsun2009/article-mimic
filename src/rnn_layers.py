@@ -1,3 +1,5 @@
+# From Stanford CS231n
+
 import numpy as np
 
 def sigmoid(x):

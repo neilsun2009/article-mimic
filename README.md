@@ -3,4 +3,6 @@ A fun project learns a set of articles and imitates a brand new "similar" articl
 
 This is inspired by the cs231n course of Stanford University.
 
-##
+## Sample data
+Some sample data are used during test. They are placed in **/data** directory.
++ **csit6000I**: This is the input for a class assignment for CSIT6000I - Search Engine and Applications HKUST. The data is originally used to implement a simple search engine. Each file contains several sentences.

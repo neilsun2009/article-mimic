@@ -1,5 +1,8 @@
-from rnn_layers import *
-from layers import *
+# Mainly from Stanford CS231n
+
+from src.rnn_layers import *
+from src.layers import *
+from src.data_utils import *
 
 class RNN():
   """
@@ -17,7 +20,7 @@ class RNN():
   4. softmax
   """
 
-  def __init__(self, word_to_idx, wordvec_dim=128,
+  def __init__(self, word_to_idx, idx_to_word, wordvec_dim=128,
                 hidden_dim=128, dtype=np.float32):
     """
     Construct a new RNN instance.
@@ -31,6 +34,7 @@ class RNN():
     """
     self.dtype = dtype
     self.word_to_idx = word_to_idx
+    self.idx_to_word = idx_to_word
     self.idx_to_word = {i: w for w, i in word_to_idx.items()}
     self.params = {}
 
@@ -133,7 +137,7 @@ class RNN():
 
     return loss, grads
   
-  def sample(self, N, starts=None, max_length=30):
+  def sample(self, N, starts=None, max_length=300, keep_tag=False):
     """
     Run a test-time forward pass for the model, outputing a result text given the start word.
     At each timestep, we embed the current word, pass it and the previous hidden
@@ -147,19 +151,19 @@ class RNN():
     - N: Batch size.
     - starts: A batch of start words of outer size N.
     - max_length: Maximum length T of generated texts.
+    - keep_tag: boolean, whether to keep the <START> and <END> tag
     Returns:
-    - texts: Array of shape (N, max_length) giving sampled texts,
-      where each element is an integer in the range [0, V). The first element
-      of texts should be the first sampled word, not the <START> token.
+    - texts: string[], size N
     """
-
-    # texts = self._null * np.ones((N, max_length), dtype=np.int32)
 
     # augment start word
     if starts is None:
       starts = [[self._start]] * N
-    if len(starts) != N:
-      raise ValueError("Invalid size of starts, should be %d" % N)
+    else:
+      if len(starts) != N:
+        raise ValueError("Invalid size of starts, should be %d" % N)
+      for i in range(N):
+        starts[i].insert(0, self._start)
 
     # Unpack parameters
     W_embed = self.params['W_embed']
@@ -193,26 +197,34 @@ class RNN():
     # you are using an LSTM, initialize the first cell state to zeros.        #
     ###########################################################################
     prev_h = np.random.randn(N, H)
-    texts_in = (starts[:][-1]).astype(np.int64)
+    texts_in = []
+    for i in range(N):
+      texts_in.append(starts[i][-1])
+    # texts_in = (starts[:][-1]).astype(np.int64)
     texts = np.zeros((N, max_length))
     texts[:, 0] = texts_in
     prev_c = np.zeros_like(prev_h)
+    # TODO: when <END> appears, do not do further RNN for that article
     for i in range(1, max_length-1):
         embed, _ = word_embedding_forward(texts_in, W_embed)
         next_h, next_c, _ = lstm_step_forward(embed, prev_h, prev_c, Wx, Wh, b)
         vocab, _ = affine_forward(next_h, W_vocab, b_vocab)
-        # texts_in = np.argmax(vocab, axis=1)
         for j in range(N):
-          texts_in[j] = np.random.choice(V, 1, vocab)
+          vocab[j] -= np.min(vocab[j]) - 0.1
+          vocab[j] = vocab[j] / np.sum(vocab[j])
+        # texts_in = np.argmax(vocab, axis=1)
+        texts_in = []
+        for j in range(N):
+          texts_in.append(np.random.choice(V, 1, p=vocab[j])[0])
         texts[:, i] = texts_in
         prev_h = next_h
         prev_c = next_c
     texts[:, max_length-1] = self._end
+    texts = idx_to_article(texts, self.idx_to_word)
     # output
-    outputs = starts.copy()
+    outputs = []
     for i in range(N):
-      outputs.extend(texts[i])
-    outputs = np.array(outputs).astype(np.int64)
+      outputs.append(' '.join(starts[i] if keep_tag else starts[i][1:]) + texts[i])
     ############################################################################
     #                             END OF YOUR CODE                             #
     ############################################################################

@@ -6,3 +6,7 @@
 ## 05/10/2018
 1. Refactor the RNN model.
 2. Refactir the RNN solver.
+
+## 06/10/2018
+1. Data utilities.
+2. Prepare CSIT6000I data.
