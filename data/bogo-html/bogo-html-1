@@ -1,0 +1,252 @@
+<div id="inner-loading">Loading...</div>
+<section class="about" id="about-desc">
+    <img src="images/bogo/about-photo-1.jpg">
+    <div id="about-desc-content">
+        <p>
+            Hello, this is Bogo speaking, and thank you for checking in this about page.
+            <br/><br/>
+            As you may have noticed, this website is completely constructed and ran by me (well, almost 100%, some credits go to
+            some open-source libraries I used). I always had the idea to store my works over time some place as a collection, and
+            later I decided that I set up a website to realize this on the one hand, to practice some front-end as well as full-stack
+            skills on the other hand. So was this site born.
+            <br/><br/>
+            As a matter of fact, I didn't possess a personal computer until I went into middle school when I was 11, and it had even been
+            one year later before I gained internet access. However, during my 'absence' of the internet, I became immersed into drawing
+            and mixing up shapes to form some logos or pictures by computer. Soon after I had the internet and some disks about Photoshop,
+            Fireworks, Dreamweaver etc., I would draw wallpapers everyday, and even started my first & original personal site, oh-sun.com,
+            followed by a more specific FC Bayern fan BBS, ibayern.com, made I was in high school. However those were pretty primitive, and
+            I even had no idea what JavaScript was at that moment.
+            <br/><br/>
+            What it did help was for me to discover my interest in computers. So I started programming in high school, by participating in
+            the informatics olympics. It didn't help in terms of adding up a few grades in my college entrance exam, but it surely helped me
+            grasp some basic knowledge towards programming, and my C/C++ classes at college.
+            <br/><br/>
+            During my college years up to now, I taught myself a list of new programming languages and skills, including C#, Android, JS and so on.
+            Now I'm more concerned in web development, front-end and some full stack techniques, and I shall keep on learning and pursuing my
+            interest towards computers and coding. There is a few more information below, including some other perspectives of me besides coding.
+            Hope you enjoy the rest of this site.
+            <br/><br/>
+            Cheers:)
+        </p>
+    </div>
+    <span id="about-toggle" ng-click="toggleDesc()"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+</section>
+<div id="about-row">
+    <div id="about-side">
+        <section class="about">
+            <h3>Basic Info</h3>
+            <ul>
+                <li><i class="fa fa-address-card-o" aria-hidden="true"></i>&nbsp;&nbsp;孙展博 / Neil "Bogo" Sun</li>
+                <li><i class="fa fa-birthday-cake" aria-hidden="true"></i>&nbsp;&nbsp;1996.05.14</li>
+                <li><i class="fa fa-child" aria-hidden="true"></i>&nbsp;&nbsp;Changchun, Jilin, China</li>
+                <li><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;Guangzhou, Guangdong, China</li>
+                <li><i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;&nbsp;neilsun2009@163.com</li>
+            </ul>
+        </section>
+        <section class="about" id="about-prof">
+            <h3>Professional Skills</h3>
+            <ul>
+                <li>HTML/CSS<span class="about-prog"><span>90%</span></span></li>
+                <li>JavaScript<span class="about-prog"><span>85%</span></span></li>
+                <li>AngularJS<span class="about-prog"><span>80%</span></span></li>
+                <li>Node.js<span class="about-prog"><span>70%</span></span></li>
+                <li>C/C++<span class="about-prog"><span>80%</span></span></li>
+                <li>C#<span class="about-prog"><span>70%</span></span></li>
+                <li>Android<span class="about-prog"><span>75%</span></span></li>
+                <li>PS/FW/PR/AE<span class="about-prog"><span>85%</span></span></li>
+            </ul>
+        </section>
+        <section class="about" id="about-lan">
+            <h3>Languages</h3>
+            <ul>
+                <li>Chinese (Mandarin)<span class="about-prog"><span>95%</span></span></li>
+                <li>English<span class="about-prog"><span>80%</span></span></li>
+                <li>Chinese (Cantonese)<span class="about-prog"><span>75%</span></span></li>
+                <li>German<span class="about-prog"><span>50%</span></span></li>
+                <li>Spanish<span class="about-prog"><span>30%</span></span></li>
+            </ul>
+        </section>
+    </div>
+    <div id="about-main">
+        <section class="about">
+            <h3>Education Background</h3>
+            <ul>
+            <li>
+                <span class="about-title">Sun Yat-Sen University</span>
+                School of Data and Computer Science<br/>
+                majoring in Software Engineering (Digital Media)
+                <span class="about-time">
+                        2014.09 - now
+                    </span>
+            </li>
+            <li>
+                <span class="about-title">High School Attached to Jilin University</span>
+                <span class="about-time">
+                        2011.09 - 2014.06
+                    </span>
+            </li>
+            <li>
+                <span class="about-title">Middle School Attached to Jilin University</span>
+                <span class="about-time">
+                        2007.09 - 2011.06
+                    </span>
+            </li>
+            <li>
+                <span class="about-title">Bei'an Primary School</span>
+                <span class="about-time">
+                        2002.09 - 2007.06
+                    </span>
+            </li>
+        </ul>
+        </section>
+        <section class="about">
+            <h3>Campus Activities</h3>
+            <ul>
+                <li>
+                    <span class="about-title">Network & Publicity Dept. of the Student Union</span>
+                    Officer (1st year), Vice Minister (2nd year)<br/>
+                    Poster designs, activities organization like PS Lecture, Originality Market etc. and PS Lecture lecturing<br/>
+                    <span class="about-time">
+                        2014.10 - 2015.07<br/>2015.10 - 2016.07
+                    </span>
+                </li>
+                <li>
+                    <span class="about-title">IBM Club</span>
+                    Minister<br/>
+                    Poster designs and activities organization<br/>
+                    <span class="about-time">
+                        2015.10 - 2016.07
+                    </span>
+                </li>
+                <li>
+                    <span class="about-title">Mobile Alliance of the Student Software<br>
+                    Technology Development Center</span>
+                    Chairman<br/>
+                    Regular lecturing in software design
+                    <span class="about-time">
+                        2016.09 - now
+                    </span>
+                </li>
+            </ul>
+        </section>
+        <section class="about">
+            <h3>Project Experience</h3>
+            <ul>
+                <li>
+                    <span class="about-title">happy960.com<br/>
+                    A social welfare project for Nanfang Daily</span>
+                    Web front-end development for mobile platform<br/>
+                    Used AngularJS for data binding. Overrode touch events to smooth the horizontal scrolling in mobile devices.
+                    Used iframe to open a new page, enabling the page to remember the history scrollbar location.
+                    <span class="about-time">
+                        2016.11 - 2017.02
+                    </span>
+                </li>
+                <li>
+                    <span class="about-title">San Xing<br/>
+                    A 2016 SYSU Software Innovation Contest competition project</span>
+                    Web front-end & Android development<br/>
+                    Combining native Android app with HTML5 pages particular activities.
+                    <span class="about-time">
+                        2016.10 - now
+                    </span>
+                </li>
+                <li>
+                    <span class="about-title">Xin Huo<br/>
+                    A 2015 SYSU Software Innovation Contest competition project</span>
+                    Android development<br/>
+                    <span class="about-time">
+                        2015.10 - 2015.12
+                    </span>
+                </li>
+                <li>
+                    <span class="about-title">Eyecare<br/>
+                    A 2015 Microsoft Imagine Cup competition project</span>
+                    Universal Windows App development<br/>
+                    <span class="about-time">
+                        2014.12 - 2015.03
+                    </span>
+                </li>
+            </ul>
+        </section>
+        <section class="about">
+            <h3>Awards & Certificates</h3>
+            <ul>
+                <li>
+                    <span class="about-title">2016 SYSU Software Innovation Contest</span>
+                    finalist
+                    <span class="about-time">
+                        competing
+                    </span>
+                </li>
+                <li>
+                    <span class="about-title">2015 SYSU Software Innovation Contest</span>
+                    8th place
+                    <span class="about-time">
+                        2015.12
+                    </span>
+                </li>
+                <li>
+                    <span class="about-title">2015 Microsoft Imagine Cup<br/>
+                    Guangzhou HEMC Division</span>
+                    Most Popular Award
+                    <span class="about-time">
+                        2015.03
+                    </span>
+                </li>
+                <li>
+                    <span class="about-title">2013 National Olympics in Informatics Province<br/></span>
+                    First Prize
+                    <span class="about-time">
+                        2013.12
+                    </span>
+                </li>
+                <li>
+                    <span class="about-title">CET-6<br/></span>
+                    619 Points
+                </li>
+                <li>
+                    <span class="about-title">Electronic Keyboard<br/></span>
+                    9th Level (top)
+                </li>
+                <li>
+                    <span class="about-title">Electronic Organ<br/></span>
+                    6th Level (top)
+                </li>
+            </ul>
+        </section>
+        <section class="about">
+            <h3>Hobbies</h3>
+            <ul>
+                <li>
+                    <span class="about-title"><i class="fa fa-futbol-o" aria-hidden="true"></i>&nbsp;&nbsp;Football</span>
+                    FC Bayern & Germany fan for 11 years<br/>
+                    Favorite players: Oliver Kahn, Bastian Schweinsteiger<br/>
+                    Other supporting teams include: Guangzhou Evergrande, Changchun Yatai, Guangzhou R&F and Chinese National Team
+                </li>
+                <li>
+                    <span class="about-title"><i class="fa fa-film" aria-hidden="true"></i>&nbsp;&nbsp;Movies</span>
+                    Comedies especially<Br/>
+                    Some favorite movies: Star Wars, Wes Anderson's collection and many R-rated comedies
+                </li>
+                <li>
+                    <span class="about-title"><i class="fa fa-television" aria-hidden="true"></i>&nbsp;&nbsp;TV Shows</span>
+                    Late night talk shows especially<Br/>
+                    Some favorite shows and hosts: Game of Thrones, Conan O'Brien, Jon Stewart, Stephen Colbert
+                </li>
+                <li>
+                    <span class="about-title"><i class="fa fa-music" aria-hidden="true"></i>&nbsp;&nbsp;Music</span>
+                    I tend to enjoy one musician's music and listen all of his (or their) songs<Br/>
+                    The list now includes: Backstreet Boys, Michael Jackson, Ricky Martin, Cui Jian, New Kids on the Block,
+                    die Prinzen, Eason Chan
+                </li>
+                <li>
+                    <span class="about-title"><i class="fa fa-language" aria-hidden="true"></i>&nbsp;&nbsp;Foreign Languages</span>
+                    I really enjoy different languages, so I immediately begun to learn Cantonese after I came to Guangzhou. Currently I'm learning German and Spanish.
+                    If I should succeed, I would be able to speak 5 different languages.<br/>
+                    And how to read Russian (without really knowing the meaning...)
+                </li>
+            </ul>
+        </section>
+    </div>
+</div>

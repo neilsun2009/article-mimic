@@ -20,7 +20,7 @@ def load_data(filename, N, mode='word'):
   articles = []
   for i in range(1, N+1):
     name = filename + '-%d' % i
-    with open(name) as f:
+    with open(name, encoding='utf-8') as f:
       article = f.read()
       articles.append(article)
   texts, word_to_idx, idx_to_word = convert_articles(articles, mode=mode)
@@ -64,7 +64,7 @@ def convert_articles(articles, mode='word'):
   keywords_arr = []
   for article in articles:
     if mode == 'word':
-      pattern = re.compile(r"[\w\-']+|\W+")
+      pattern = re.compile(r"[\w\-]+|[^a-zA-Z\-0-9_ ]+")
       keywords = pattern.findall(article)
     elif mode == 'letter':
       keywords = list(article)
@@ -106,10 +106,14 @@ def text_to_idx(texts, word_to_idx):
 # input:
 # 	indices: int[][], size of (N, M)
 #	  idx_to_word: string[], mapping from index to word
+#   mode: 'letter' or 'word', for keyword seperation
 #   keep_tag: boolean, whether to keep the <START> and <END> tag
 # return:
 #   articles: string[], size N
-def idx_to_article(indices, idx_to_word, keep_tag=False):
+def idx_to_article(indices, idx_to_word, mode='word', keep_tag=False):
+  # input validation
+  if not mode in ('letter', 'word'):
+    raise ValueError('Invalid mode %s' % mode)
   N, M = indices.shape
   articles = []
   for i in range(N):
@@ -127,6 +131,9 @@ def idx_to_article(indices, idx_to_word, keep_tag=False):
       # <END> is considered at last case
       if keep_tag == False and word == '<START>':
         continue
-      article += word + ' '
+      if mode == 'word':
+        article += word + ' '
+      else:
+        article += word
     articles.append(article)
   return articles

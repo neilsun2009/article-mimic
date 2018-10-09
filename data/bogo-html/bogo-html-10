@@ -1,0 +1,35 @@
+<div id="inner-loading">Loading...</div>
+<div id="grid-tags-container">
+    <div id="grid-tags-inner-container">
+        <span class="tag" data-tag="all" ng-click="changeTag('all')">all ({{allCount}})</span>
+        <span class="tag" my-grid-tag-repeat ng-repeat="tag in tags" ng-click="changeTag(tag.name)" data-tag="{{tag.name}}">{{tag.name + ' (' + tag.num + ')'}}</span>
+        <span class="tag" id="tag-show" data-tag="..." ng-click="showTags()">...</span>
+        <span class="tag" id="tag-hide" data-tag="^" ng-click="hideTags()">^</span>
+    </div>
+</div>
+<section id="grid-container">
+    <article class="grid" ng-repeat="article in articles" my-grid-repeat>
+        <a href="{{'#/article?articleid=' + article._id}}">
+            <img src="{{article.coverImage + '?imageView2/1/w/400/h/300/q/90|imageslim'}}">
+            <p>{{article.publishDate}}</p>
+            <h3>{{article.title}}</h3>
+        </a>
+        <p>
+            <span ng-click="changeTag(tag)" ng-repeat="tag in article.tags">{{tag}}</span>
+        </p>
+        <a href="{{'#/article?articleid=' + article._id}}">
+            <p>{{article.summary}}</p>
+        </a>
+    </article>
+</section>
+<div id="pager-container">
+    <span class="pager"><</span>
+    <span class="pager">1</span>
+    <span class="pager inactive">...</span>
+    <span class="pager">7</span>
+    <span class="pager active">8</span>
+    <span class="pager">9</span>
+    <span class="pager inactive">...</span>
+    <span class="pager">16</span>
+    <span class="pager">></span>
+</div>

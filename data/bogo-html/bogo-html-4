@@ -1,0 +1,53 @@
+<div id="inner-loading">Loading...</div>
+<div id="blog-row">
+    <div id="blog-side">
+        <section id="blog-words">
+            <a href="#/words">
+                <h3>Words</h3>
+                <span href="#" class="more">
+                    more
+                </span>
+                <p>
+                    <span class="word" href="#" ng-repeat="word in words">
+                        {{word.content}}<br/>
+                        <span class="time">{{word.date | date:'yyyy-MM-dd HH:mm'}}</span>
+                    </span>
+                </p>
+            </a>
+        </section>
+        <section id="blog-tags">
+            <h3>Tags</h3>
+            <div id="grid-tags-container">
+                <div id="grid-tags-inner-container">
+                    <span class="tag" data-tag="all" ng-click="changeTag('all')">all ({{allCount}})</span>
+                    <span class="tag" my-grid-tag-repeat ng-repeat="tag in tags" ng-click="changeTag(tag.name)" data-tag="{{tag.name}}">{{tag.name + ' (' + tag.num + ')'}}</span>
+                    <span class="tag" id="tag-show" data-tag="..." ng-click="showTags()">...</span>
+                    <span class="tag" id="tag-hide" data-tag="^" ng-click="hideTags()">^</span>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="blog-main">
+        <section id="blog-tagname" ng-show="tagNameShow">
+            <h3>{{curTag}}:</h3>
+        </section>
+        <section class="blog-article" ng-repeat="article in articles" my-blog-repeat>
+            <a href="#/article?articleid={{article._id}}">
+                <div class="cover">
+                    <img src="{{article.coverImage}}?imageView2/1/w/400/h/300/q/90|imageslim">
+                </div>
+            </a>
+            <div class="text">
+                <a href="#/article?articleid={{article._id}}">
+                    <span class="time">{{article.addDate}}</span>
+                    <span class="title">{{article.title}}</span>
+                </a>
+                <span ng-click="changeTag(tag)" class="tag" href="#/blog?tagname={{tag}}" ng-repeat="tag in article.tags">{{tag}}</span><br/>
+                <a href="#/article?articleid={{article._id}}">{{article.summary}}</a>
+                <div class="text-bg"></div>
+            </div>
+        </section>
+        <div id="pager-container">
+        </div>
+    </div>
+</div>

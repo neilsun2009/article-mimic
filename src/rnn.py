@@ -153,7 +153,7 @@ class RNN():
     - max_length: Maximum length T of generated texts.
     - keep_tag: boolean, whether to keep the <START> and <END> tag
     Returns:
-    - texts: string[], size N
+    - texts: [][], size N*max_length
     """
 
     # augment start word
@@ -206,26 +206,22 @@ class RNN():
     prev_c = np.zeros_like(prev_h)
     # TODO: when <END> appears, do not do further RNN for that article
     for i in range(1, max_length-1):
-        embed, _ = word_embedding_forward(texts_in, W_embed)
-        next_h, next_c, _ = lstm_step_forward(embed, prev_h, prev_c, Wx, Wh, b)
-        vocab, _ = affine_forward(next_h, W_vocab, b_vocab)
-        for j in range(N):
-          vocab[j] -= np.min(vocab[j]) - 0.1
-          vocab[j] = vocab[j] / np.sum(vocab[j])
-        # texts_in = np.argmax(vocab, axis=1)
-        texts_in = []
-        for j in range(N):
-          texts_in.append(np.random.choice(V, 1, p=vocab[j])[0])
-        texts[:, i] = texts_in
-        prev_h = next_h
-        prev_c = next_c
+      embed, _ = word_embedding_forward(texts_in, W_embed)
+      next_h, next_c, _ = lstm_step_forward(embed, prev_h, prev_c, Wx, Wh, b)
+      vocab, _ = affine_forward(next_h, W_vocab, b_vocab)
+      for j in range(N):
+        vocab[j] -= np.min(vocab[j]) - 0.1
+        vocab[j] = vocab[j] / np.sum(vocab[j])
+      # texts_in = np.argmax(vocab, axis=1)
+      texts_in = []
+      for j in range(N):
+        texts_in.append(np.random.choice(V, 1, p=vocab[j])[0])
+      texts[:, i] = texts_in
+      prev_h = next_h
+      prev_c = next_c
     texts[:, max_length-1] = self._end
-    texts = idx_to_article(texts, self.idx_to_word)
-    # output
-    outputs = []
-    for i in range(N):
-      outputs.append(' '.join(starts[i] if keep_tag else starts[i][1:]) + texts[i])
+    texts = texts.astype(np.int64)
+    return texts
     ############################################################################
     #                             END OF YOUR CODE                             #
     ############################################################################
-    return outputs

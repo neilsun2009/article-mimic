@@ -1,0 +1,13 @@
+<div id="inner-loading">Loading...</div>
+<section id="advice-container">
+    <form name="advice_form" ng-submit="addAdvice()">
+        <p id="advice-msg" >{{msg}}</p>
+        <label>Title</label>
+        <input name="title" placeholder="title" required ng-model="adviceTitle">
+        <label>Advice</label>
+        <textarea required name="content" placeholder="advice" ng-model="adviceContent"></textarea>
+        <label>E-mail</label>
+        <input required type="email" name="email" placeholder="e-mail" ng-model="adviceEmail">
+        <button type="submit"  ng-disabled="advice_form.$invalid || fiveSeconds">Submit</button>
+    </form>
+</section>

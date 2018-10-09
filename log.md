@@ -10,3 +10,8 @@
 ## 06/10/2018
 1. Data utilities.
 2. Prepare CSIT6000I data.
+
+## 08/10/2018
+1. Modify the seperation method for word.
+2. Prepare Linux kernel data for letter seperation.
+3. Prepare some of my HTML data.

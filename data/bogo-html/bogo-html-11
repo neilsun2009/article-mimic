@@ -1,0 +1,6 @@
+<div id="inner-loading">Loading...</div>
+<section class="word-container" ng-repeat="word in words">
+    <p class="content">{{word.content}}</p>
+    <p class="date">{{word.date | date:'yyyy-MM-dd HH:mm'}}</p>
+</section>
+<div id="pager-container"></div>

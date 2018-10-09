@@ -1,0 +1,13 @@
+<div id="inner-loading">Loading...</div>
+<section id="grid-container">
+    <article class="grid" ng-repeat="project in projects" my-grid-repeat>
+        <a target="_blank" href="{{project.url}}">
+            <img src="{{project.coverImage + '?imageView2/1/w/400/h/300/q/90|imageslim'}}">
+            <p>{{project.addDate | date:'yyyy-MM-dd'}}</p>
+            <h3>{{project.title}}</h3>
+        </a>
+        <a href="{{project.url}}">
+            <p>{{project.summary}}</p>
+        </a>
+    </article>
+</section>

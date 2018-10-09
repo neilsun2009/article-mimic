@@ -1,0 +1,55 @@
+<div id="inner-loading">Loading...</div>
+<div id="article-row">
+    <div id="article-main">
+        <section id="article-content">
+            <div id="article-cover-image">
+                <img ng-src="{{coverImage}}">
+            </div>
+            <div id="article-misc">
+                <span id="publish-date" ng-show="showPublishDate">
+                    <i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Publish Date: {{publishDate}}
+                </span>&nbsp;
+                <span id="add-date">
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>&nbsp;Add Date: {{addDate}}
+                </span>&nbsp;
+                <span id="tags">
+                    <i class="fa fa-tags" aria-hidden="true"></i>&nbsp;Tags:
+                    <span ng-repeat="tag in tags">
+                        <a target="_blank" href="#/{{section}}?tagname={{tag}}">{{tag}}</a>&nbsp;
+                    </span>
+                </span>
+            </div>
+            <div id="article-summary-2">
+                <p>{{summary}}</p>
+            </div>
+            <div id="article-article"></div>
+            <!--<div id="article-share"></div>-->
+        </section>
+    </div>
+    <div id="article-side">
+        <section id="article-summary">
+            <p>{{summary}}</p>
+        </section>
+        <section id="article-download" ng-show="downloadLink">
+            <a href="{{downloadLink}}" target="_blank">
+                <i class="fa fa-download" aria-hidden="true"></i> Here to download
+            </a>
+        </section>
+        <section id="article-recommend">
+            <h3>{{newestName}}</h3>
+            <article ng-repeat="newest in newests">
+                <a href="{{'#/article?articleid=' + newest._id}}">
+                    <img ng-src="{{newest.coverImage + '?imageView2/1/w/160/h/120/q/90|imageslim'}}">
+                </a>
+                <span>
+                    <a href="{{'#/article?articleid=' + newest._id}}">{{newest.title}}<br/></a>
+                    <a href="#/{{section}}?tagname={{tag}}" ng-repeat="tag in newest.tags">
+                        <small><i>{{tag}}</i></small>
+                    </a>
+                    <span class="text-bg"></span>
+                </span>
+
+            </article>
+        </section>
+    </div>
+</div>

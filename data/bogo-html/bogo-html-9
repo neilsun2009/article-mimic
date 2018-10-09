@@ -1,0 +1,6 @@
+<section id="log">
+    <ul ng-repeat="log in logs">
+        <h3>{{log.date}}</h3>
+        <li ng-repeat="event in log.events">{{event}}</li>
+    </ul>
+</section>

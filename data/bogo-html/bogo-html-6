@@ -1,0 +1,43 @@
+<div id="inner-loading">Loading...</div>
+<div id="contact-container">
+    <a class="contact" target="_blank" href="mailto:neilsun2009@163.com">
+        <section id="contact-email">
+            <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;neilsun2009@163.com
+        </section>
+    </a>
+    <div class="contact">
+        <section id="contact-wechat" ng-click="showQRCode('wechat')">
+            <i class="fa fa-weixin" aria-hidden="true"></i>&nbsp;&nbsp;bogosun
+        </section>
+    </div>
+    <div class="contact">
+        <section id="contact-qq" ng-click="showQRCode('qq')">
+            <i class="fa fa-qq" aria-hidden="true"></i>&nbsp;&nbsp;1063196223
+        </section>
+    </div>
+    <a class="contact" target="_blank" href="http://www.weibo.com/u/2886206782">
+        <section id="contact-weibo">
+            <i class="fa fa-weibo" aria-hidden="true"></i>&nbsp;&nbsp;@neilsun2009
+        </section>
+    </a>
+    <a class="contact" target="_blank" href="https://github.com/neilsun2009">
+        <section id="contact-github">
+            <i class="fa fa-github" aria-hidden="true"></i>&nbsp;&nbsp;neilsun2009
+        </section>
+    </a>
+    <!--<a class="contact" target="_blank" href="#">-->
+    <!--<section id="contact-facebook">-->
+    <!--<i class="fa fa-facebook-square" aria-hidden="true"></i>&nbsp;&nbsp;neilsun2009-->
+    <!--</section>-->
+    <!--</a>-->
+    <!--<a class="contact" target="_blank" href="#">-->
+    <!--<section id="contact-twitter">-->
+    <!--<i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;&nbsp;@neilsun2009-->
+    <!--</section>-->
+    <!--</a>-->
+    <!--<a class="contact" target="_blank" href="#">-->
+    <!--<section id="contact-instagram">-->
+    <!--<i class="fa fa-instagram" aria-hidden="true"></i>&nbsp;&nbsp;neilsun2009-->
+    <!--</section>-->
+    <!--</a>-->
+</div>
